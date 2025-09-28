@@ -20,6 +20,7 @@ The tool also supports **deeply nested JSON files**, allowing you to filter, fla
 - ✅ Chunked processing (default 5MB parts) for memory efficiency
 - ✅ Filter records by field/value to extract relevant data
 - ✅ Flatten and transform **deeply nested JSON structures**
+- ✅ Parallel processing using worker pool for chunked data
 
 ### Planned Features
 - ⏳ Support advanced filtering and expressions
