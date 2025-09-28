@@ -2,7 +2,7 @@
 
 An **open-source Go tool** for processing massive structured datasets with streaming, filtering, and transformation, enabling efficient preparation of data for analytics and reporting.
 
-Designed to handle **massive structured datasets**, ranging from several gigabytes up to thousands of gigabytes (terabytes). 
+Designed to handle massive datasets, from gigabytes to terabytes
 
 The tool processes files in **5MB chunks**, streaming and converting data efficiently into **Parquet format**, enabling analytics workflows without loading the entire dataset into memory. 
 On a 12-core machine, an 80GB dataset can be converted to Parquet in under 5 minutes.
@@ -79,12 +79,25 @@ go build -o json-pipeline .
 
 **Command:**
 ```bash
-./json-pipeline --input deep_nested.json --field status --value active --output active.parquet
+./json-pipeline \
+  --input data/example1.json \
+  --output out.parquet \
+  --cpuprofile cpu.prof \
+  --memprofile mem.prof
 ```
 
 **Output:**
 - Parquet file with flattened fields: `id`, `status`, `details.score`, `details.preferences.color`, `details.preferences.food`
 
+
+**Analyzing the profiles**
+
+Requires Graphviz installed (go tool pprof -http=:8080 cpu.prof)
+
+- go tool pprof cpu.prof
+- (pprof) top
+- (pprof) list main
+- (pprof) web   
 ---
 
 ## Roadmap
