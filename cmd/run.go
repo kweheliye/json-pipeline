@@ -1,12 +1,10 @@
 package cmd
 
 import (
-	"bufio"
-	"fmt"
 	"json-pipeline/internal/pipeline"
+	"json-pipeline/pkg/utils"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -28,18 +26,6 @@ func init() {
 }
 
 func runPipeline(cmd *cobra.Command, args []string) {
-	reader := bufio.NewReader(os.Stdin)
-
-	if inputPath == "" {
-		fmt.Print("Enter input file path or URL: ")
-		inputRaw, _ := reader.ReadString('\n')
-		inputPath = strings.TrimSpace(inputRaw)
-	}
-	if outputPath == "" {
-		fmt.Print("Enter output Parquet file path: ")
-		outputRaw, _ := reader.ReadString('\n')
-		outputPath = strings.TrimSpace(outputRaw)
-	}
 
 	if inputPath == "" || outputPath == "" {
 		log.Fatal("Input and output paths cannot be empty")
@@ -68,7 +54,7 @@ func runPipeline(cmd *cobra.Command, args []string) {
 	}
 
 	p := pipeline.New(steps...)
-	if err := p.Run(); err != nil {
-		log.Fatalf("Pipeline failed: %v", err)
-	}
+	err := p.Run()
+	utils.ExitOnError(err)
+
 }
