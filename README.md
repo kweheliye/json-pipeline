@@ -41,24 +41,13 @@ go build -o json-pipeline .
 ```
 
 ### Usage
-
-#### Basic Conversion to Parquet
 ```bash
-./json-pipeline --input data.json --output out.parquet
+ ./json-pipeline run \                                                   
+  --input data/example1.json \
+  --output out.parquet \
+  --cpuprofile cpu.prof \
+  --memprofile mem.prof
 ```
-
-#### Filtered Conversion
-```bash
-./json-pipeline --input data.json.gz --field status --value active --output active.parquet
-```
-
-- Input can be `.json` or `.json.gz`
-- Output is **Parquet**, optimized for analytics
-- Supports **chunked processing (5MB default)**
-- Supports **deeply nested JSON**, automatically flattened
-- Apply **filters** to extract only relevant records
-
----
 
 ## Example
 
@@ -106,6 +95,7 @@ Requires Graphviz installed (go tool pprof -http=:8080 cpu.prof)
 - [ ] Schema-based transformations
 - [ ] Additional output formats: CSV, Avro
 - [ ] Cloud connectors (S3, GCS, HTTP URLs)
+- [ ] Worker pool for parallelism
 - [ ] Metrics, logging, and error handling improvements
 
 ---
