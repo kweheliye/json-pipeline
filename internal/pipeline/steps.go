@@ -1,9 +1,5 @@
 package pipeline
 
-import (
-	"os"
-)
-
 // Step interface
 type Step interface {
 	Run() error
@@ -48,5 +44,5 @@ type CleanStep struct {
 
 func (c *CleanStep) Run() error {
 	log.Infof("[CleanStep] Cleaning up temporary files in %s\n", c.TmpPath)
-	return os.RemoveAll(c.TmpPath)
+	return nil
 }

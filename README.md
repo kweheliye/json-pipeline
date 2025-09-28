@@ -79,7 +79,7 @@ go build -o json-pipeline .
 
 **Command:**
 ```bash
-./json-pipeline \
+ ./json-pipeline run \                                                   
   --input data/example1.json \
   --output out.parquet \
   --cpuprofile cpu.prof \
@@ -106,7 +106,6 @@ Requires Graphviz installed (go tool pprof -http=:8080 cpu.prof)
 - [ ] Schema-based transformations
 - [ ] Additional output formats: CSV, Avro
 - [ ] Cloud connectors (S3, GCS, HTTP URLs)
-- [ ] Worker pool for parallelism
 - [ ] Metrics, logging, and error handling improvements
 
 ---
